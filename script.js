@@ -1,7 +1,6 @@
 var $turn = 0;
 var $o = [];
 var $x = [];
-var $winningCombo = [[1, 2, 3]];
 
 $(document).ready(function() {
 	
@@ -23,6 +22,7 @@ $(document).ready(function() {
 			$o.push(parseInt($clicked));
 			$('#player').text("Player two's turn");
 			console.log($o);
+			winner();
 			
 		}
 		$turn++;
@@ -32,7 +32,45 @@ $(document).ready(function() {
 });
 
 var winner = function() {
+	var $sumX = 0;
+	var $sumO = 0;
+	
 	if ($x.length >= 3) {
+		for (i = 0; i < 3; i++) {
+			$sumX += $x[i];
+		}
+		if ($sumX === 15) {
+			alert("Player 1 is a winner (first 3)");
+		}else if ( ($x[0]) + ($x[1]) + ($x[3]) === 15 ) {
+			alert("Player 1 is a winner (0,1,3)");
+		}else if ( ($x[0]) + ($x[1]) + ($x[4]) === 15 ) {
+			alert("Player 1 is a winner (0,1,4)");
+		}else if ( ($x[0]) + ($x[2]) + ($x[4]) === 15 ) {
+			alert("Player 1 is a winner (0,2,4)");
+		}else if ( ($x[1]) + ($x[2]) + ($x[3]) === 15 ) {
+			alert("Player 1 is a winner (1,2,3)");
+		}else if ( ($x[1]) + ($x[2]) + ($x[4]) === 15 ) {
+			alert("Player 1 is a winner (1,2,4)");
+		}else if ( ($x[2]) + ($x[3]) + ($x[4]) === 15 ) {
+			alert("Player 1 is a winner (2,3,4)");
+		}
+	}
+
+	if ($o.length >= 3) {
+		for (i = 0; i < 3; i++) {
+			$sumO += $o[i];
+		}
+		if ($sumO === 15) {
+			alert("Plaoer 2 is a winner (first 3)");
+		}else if ( ($o[0]) + ($o[1]) + ($o[2]) === 15 ) {
+			alert("Plaoer 2 is a winner (0,1,2)");
+		}else if ( ($o[0]) + ($o[1]) + ($o[3]) === 15 ) {
+			alert("Plaoer 2 is a winner (0,1,4)");
+		}else if ( ($o[0]) + ($o[2]) + ($o[3]) === 15 ) {
+			alert("Plaoer 2 is a winner (0,2,4)");
+		}else if ( ($o[1]) + ($o[2]) + ($o[3]) === 15 ) {
+			alert("Player 2 is a winner (1,2,3)");
+		}
 	}
 }
 
