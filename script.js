@@ -1,6 +1,7 @@
 var $turn = 0;
 var $o = [];
 var $x = [];
+var $isWinner = false;
 
 $(document).ready(function() {
 	$(document).on('click', 'button', function() {
@@ -30,6 +31,17 @@ var start = function() {
 			winner();
 		}
 		$turn++;
+		console.log($turn);
+		if ( ($turn >= 9) && ($isWinner === false) ) {
+			var img = document.createElement('img');
+			imgSrc = "http://assets.diylol.com/hfs/ebc/f71/ef3/resized/success-kid-meme-generator-hell-yeah-tie-winning-ea670b.jpg";
+			$('img').attr("src", imgSrc);
+			$('img').animate({
+				'height': '+=620px',
+				'width': '+=620px'
+			}, 2000);
+			setTimeout( '$("img").hide();', 3000 );
+		}
 	});
 }
 
@@ -42,21 +54,29 @@ var winner = function() {
 			$sumX += $x[i];
 		}
 		if ( ($x[0]) + ($x[1]) + ($x[2]) === 15 ) {
-			alert("Player 1 is a winner (first 3)");
+			alert("Player 1 is a winner");
+			$isWinner = true;
 		}else if ( ($x[0]) + ($x[1]) + ($x[3]) === 15 ) {
-			alert("Player 1 is a winner (0,1,3)");
+			alert("Player 1 is a winner");
+			$isWinner = true;
 		}else if ( ($x[0]) + ($x[1]) + ($x[4]) === 15 ) {
-			alert("Player 1 is a winner (0,1,4)");
+			alert("Player 1 is a winner");
+			$isWinner = true;
 		}else if ( ($x[0]) + ($x[2]) + ($x[4]) === 15 ) {
-			alert("Player 1 is a winner (0,2,4)");
+			alert("Player 1 is a winner");
+			$isWinner = true;
 		}else if ( ($x[1]) + ($x[2]) + ($x[3]) === 15 ) {
-			alert("Player 1 is a winner (1,2,3)");
+			alert("Player 1 is a winner");
+			$isWinner = true;
 		}else if ( ($x[1]) + ($x[2]) + ($x[4]) === 15 ) {
-			alert("Player 1 is a winner (1,2,4)");
+			alert("Player 1 is a winner");
+			$isWinner = true;
 		}else if ( ($x[2]) + ($x[3]) + ($x[4]) === 15 ) {
-			alert("Player 1 is a winner (2,3,4)");
+			alert("Player 1 is a winner");
+			$isWinner = true;
 		}else if ( ($x[0]) + ($x[2]) + ($x[3]) === 15 ) {
-			alert("Player 1 is a winner (0,2,3)");
+			alert("Player 1 is a winner");
+			$isWinner = true;
 		}
 	}
 
@@ -65,13 +85,17 @@ var winner = function() {
 			$sumO += $o[i];
 		}
 		if ( ($o[0]) + ($o[1]) + ($o[2]) === 15 ) {
-			alert("Player 2 is a winner (first 3)");
+			alert("Player 2 is a winner");
+			$isWinner = true;
 		}else if ( ($o[0]) + ($o[1]) + ($o[3]) === 15 ) {
-			alert("Player 2 is a winner (0,1,2)");
+			alert("Player 2 is a winner");
+			$isWinner = true;
 		}else if ( ($o[0]) + ($o[2]) + ($o[3]) === 15 ) {
-			alert("Player 2 is a winner (0,1,4)");
+			alert("Player 2 is a winner");
+			$isWinner = true;
 		}else if ( ($o[1]) + ($o[2]) + ($o[3]) === 15 ) {
-			alert("Player 2 is a winner (0,2,4)");
+			alert("Player 2 is a winner d");
+			$isWinner = true;
 		}
 	}
 }
