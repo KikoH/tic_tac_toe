@@ -13,3 +13,8 @@ td {
 table {
 	margin: auto;
 }
+
+img {
+	position: absolute;
+	margin-left: 80px;
+}
