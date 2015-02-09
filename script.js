@@ -1,9 +1,13 @@
 var $turn = 0;
 var $o = [];
 var $x = [];
+var $sum = 0;
 var $isWinner = false;
 
 $(document).ready(function() {
+	$("#tie").hide();
+	$('#player').text("Player one's turn");
+
 	$(document).on('click', 'button', function() {
 		location.reload();
 	});
@@ -13,7 +17,7 @@ $(document).ready(function() {
 var start = function() {
 	$('td').click(function(){
 		if( $turn % 2 === 0 ) {
-			$(this).text("X");
+			$('<img style="max-height: auto; max-width: 100%;" src="http://storage.googleapis.com/ticimages/x.jpg">').appendTo($(this));
 			var $boxId = $(this).attr("id");
 			$(this).off('click');
 			$x.push(parseInt($boxId));
@@ -22,7 +26,7 @@ var start = function() {
 			winner();
 		}
 		else {
-			$(this).text("O");
+			$('<img style="max-height: auto; max-width: 100%;" src="http://storage.googleapis.com/ticimages/o.jpg">').appendTo($(this));
 			var $boxId = $(this).attr("id");
 			$(this).off('click');
 			$o.push(parseInt($boxId));
@@ -33,14 +37,8 @@ var start = function() {
 		$turn++;
 		console.log($turn);
 		if ( ($turn >= 9) && ($isWinner === false) ) {
-			var img = document.createElement('img');
-			imgSrc = "http://assets.diylol.com/hfs/ebc/f71/ef3/resized/success-kid-meme-generator-hell-yeah-tie-winning-ea670b.jpg";
-			$('img').attr("src", imgSrc);
-			$('img').animate({
-				'height': '+=620px',
-				'width': '+=620px'
-			}, 2000);
-			setTimeout( '$("img").hide();', 3000 );
+			$('#tie').show();
+			setTimeout( '$("img").hide();', 2000 );
 		}
 	});
 }
@@ -50,9 +48,6 @@ var winner = function() {
 	var $sumO = 0;
 	
 	if ($x.length >= 3) {
-		for (i = 0; i < $x.length; i++) {
-			$sumX += $x[i];
-		}
 		if ( ($x[0]) + ($x[1]) + ($x[2]) === 15 ) {
 			alert("Player 1 is a winner");
 			$isWinner = true;
@@ -78,6 +73,7 @@ var winner = function() {
 			alert("Player 1 is a winner");
 			$isWinner = true;
 		}
+		$(window).off("click");
 	}
 
 	if ($o.length >= 3) {
@@ -103,7 +99,16 @@ var winner = function() {
 	// function checkForWinner(player) {
 	// 	winners = [[1,2,3],[4,5,6]]
 	// 	$blue = [1,3,5,7]
-	// 	blue_combos = [[1,3,5],[3,5,7]]
+	// 	blue_combos = [[1,3,6],[3,5,7]]
+
+	// 	a = [1,2,3]
+	// 	b = [2,4,6]
+
+	// 	a[0] == b[0]
+	// 	a[0] == b[0]
+	// 	a[0] == b[0]
+
+	// 	winners[0] == blue_combos[0]
 	// }
 
 
